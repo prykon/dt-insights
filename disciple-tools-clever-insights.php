@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Disciple Tools - Example Metrics Template
+ * Plugin Name: Disciple Tools - Clever Insights Template
  * Plugin URI: https://github.com/ZumeProject/disciple-tools-advanced-metrics-template
- * Description: Disciple Tools - Example Metrics Template extends the charts and reporting ability of Disciple Tools
+ * Description: Disciple Tools - Clever Insights Template extends the charts and reporting ability of Disciple Tools
  * Version:  0.2
  * Author URI: https://github.com/DiscipleTools
  * GitHub Plugin URI: https://github.com/DiscipleTools/disciple-tools-advanced-metrics-template
@@ -24,25 +24,25 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
-$dt_example_metrics_required_dt_theme_version = '0.19.0';
+$dt_clever_insights_required_dt_theme_version = '0.19.0';
 
 /**
- * Gets the instance of the `DT_Example_Metrics` class.
+ * Gets the instance of the `DT_Clever_Insights` class.
  *
  * @since  0.1
  * @access public
  * @return object|bool
  */
-function dt_example_metrics() {
-    global $dt_example_metrics_required_dt_theme_version;
+function dt_clever_insights() {
+    global $dt_clever_insights_required_dt_theme_version;
     $wp_theme = wp_get_theme();
     $version = $wp_theme->version;
     /*
      * Check if the Disciple.Tools theme is loaded and is the latest required version
      */
     $is_theme_dt = strpos( $wp_theme->get_template(), "disciple-tools-theme" ) !== false || $wp_theme->name === "Disciple Tools";
-    if ( $is_theme_dt && version_compare( $version, $dt_example_metrics_required_dt_theme_version, "<" ) ) {
-        add_action( 'admin_notices', 'dt_example_metrics_hook_admin_notice' );
+    if ( $is_theme_dt && version_compare( $version, $dt_clever_insights_required_dt_theme_version, "<" ) ) {
+        add_action( 'admin_notices', 'dt_clever_insights_hook_admin_notice' );
         add_action( 'wp_ajax_dismissed_notice_handler', 'dt_hook_ajax_notice_handler' );
         return false;
     }
@@ -60,11 +60,11 @@ function dt_example_metrics() {
      */
     $is_rest = dt_is_rest();
     if ( strpos( dt_get_url_path(), 'metrics' ) !== false ){
-        return DT_Example_Metrics::get_instance();
+        return DT_Clever_Insights::get_instance();
     }
 
 }
-add_action( 'init', 'dt_example_metrics' );
+add_action( 'init', 'dt_clever_insights' );
 
 /**
  * Singleton class for setting up the plugin.
@@ -72,7 +72,7 @@ add_action( 'init', 'dt_example_metrics' );
  * @since  0.1
  * @access public
  */
-class DT_Example_Metrics {
+class DT_Clever_Insights {
 
     /**
      * Declares public variables
@@ -100,7 +100,7 @@ class DT_Example_Metrics {
         static $instance = null;
 
         if ( is_null( $instance ) ) {
-            $instance = new dt_example_metrics();
+            $instance = new dt_clever_insights();
             $instance->setup();
             $instance->includes();
             $instance->setup_actions();
@@ -148,7 +148,7 @@ class DT_Example_Metrics {
 
 
         // Admin and settings variables
-        $this->token             = 'dt_example_metrics';
+        $this->token             = 'dt_clever_insights';
         $this->version             = '0.2';
     }
 
@@ -221,7 +221,7 @@ class DT_Example_Metrics {
      * @return void
      */
     public function i18n() {
-        load_plugin_textdomain( 'dt_example_metrics', false, trailingslashit( dirname( plugin_basename( __FILE__ ) ) ). 'languages' );
+        load_plugin_textdomain( 'dt_clever_insights', false, trailingslashit( dirname( plugin_basename( __FILE__ ) ) ). 'languages' );
     }
 
     /**
@@ -232,7 +232,7 @@ class DT_Example_Metrics {
      * @return string
      */
     public function __toString() {
-        return 'dt_example_metrics';
+        return 'dt_clever_insights';
     }
 
     /**
@@ -243,7 +243,7 @@ class DT_Example_Metrics {
      * @return void
      */
     public function __clone() {
-        _doing_it_wrong( __FUNCTION__, esc_html__( 'Whoah, partner!', 'dt_example_metrics' ), '0.1' );
+        _doing_it_wrong( __FUNCTION__, esc_html__( 'Whoah, partner!', 'dt_clever_insights' ), '0.1' );
     }
 
     /**
@@ -254,7 +254,7 @@ class DT_Example_Metrics {
      * @return void
      */
     public function __wakeup() {
-        _doing_it_wrong( __FUNCTION__, esc_html__( 'Whoah, partner!', 'dt_example_metrics' ), '0.1' );
+        _doing_it_wrong( __FUNCTION__, esc_html__( 'Whoah, partner!', 'dt_clever_insights' ), '0.1' );
     }
 
     /**
@@ -266,7 +266,7 @@ class DT_Example_Metrics {
      */
     public function __call( $method = '', $args = array() ) {
         // @codingStandardsIgnoreLine
-        _doing_it_wrong( "dt_example_metrics::{$method}", esc_html__( 'Method does not exist.', 'dt_example_metrics' ), '0.1' );
+        _doing_it_wrong( "dt_clever_insights::{$method}", esc_html__( 'Method does not exist.', 'dt_clever_insights' ), '0.1' );
         unset( $method, $args );
         return null;
     }
@@ -274,19 +274,19 @@ class DT_Example_Metrics {
 // end main plugin class
 
 // Register activation hook.
-register_activation_hook( __FILE__, [ 'DT_Example_Metrics', 'activation' ] );
-register_deactivation_hook( __FILE__, [ 'DT_Example_Metrics', 'deactivation' ] );
+register_activation_hook( __FILE__, [ 'DT_Clever_Insights', 'activation' ] );
+register_deactivation_hook( __FILE__, [ 'DT_Clever_Insights', 'deactivation' ] );
 
 /**
  * Admin alert for when Disciple Tools Theme is not available or not the right version
  */
-function dt_example_metrics_hook_admin_notice() {
-    global $dt_example_metrics_required_dt_theme_version;
+function dt_clever_insights_hook_admin_notice() {
+    global $dt_clever_insights_required_dt_theme_version;
     $wp_theme = wp_get_theme();
     $current_version = $wp_theme->version;
-    $message = __( "'Disciple Tools - Example Metrics Template' plugin requires 'Disciple Tools' theme to work. Please activate 'Disciple Tools' theme or make sure it is latest version.", "dt_example_metrics" );
+    $message = __( "'Disciple Tools - Clever Insights Template' plugin requires 'Disciple Tools' theme to work. Please activate 'Disciple Tools' theme or make sure it is latest version.", "dt_clever_insights" );
     if ( $wp_theme->get_template() === "disciple-tools-theme" ){
-        $message .= sprintf( esc_html__( 'Current Disciple Tools version: %1$s, required version: %2$s', 'dt_example_metrics' ), esc_html( $current_version ), esc_html( $dt_example_metrics_required_dt_theme_version ) );
+        $message .= sprintf( esc_html__( 'Current Disciple Tools version: %1$s, required version: %2$s', 'dt_clever_insights' ), esc_html( $current_version ), esc_html( $dt_clever_insights_required_dt_theme_version ) );
     }
     // Check if it's been dismissed...
     if ( ! get_option( 'dismissed-dt-example-metrics', false ) ) { ?>

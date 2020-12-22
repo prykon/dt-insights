@@ -1,8 +1,8 @@
 <?php
 /**
- * DT_Example_Metrics_Menu class for the admin page
+ * DT_Clever_Insights_Menu class for the admin page
  *
- * @class       DT_Example_Metrics_Menu
+ * @class       DT_Clever_Insights_Menu
  * @version     0.1.0
  * @since       0.1.0
  */
@@ -13,25 +13,25 @@ if ( ! defined( 'ABSPATH' ) ) { exit; // Exit if accessed directly
 /**
  * Initialize menu class
  */
-DT_Example_Metrics_Menu::instance();
+DT_Clever_Insights_Menu::instance();
 
 /**
- * Class DT_Example_Metrics_Menu
+ * Class DT_Clever_Insights_Menu
  */
-class DT_Example_Metrics_Menu {
+class DT_Clever_Insights_Menu {
 
-    public $token = 'dt_example_metrics';
+    public $token = 'dt_clever_insights';
 
     private static $_instance = null;
 
     /**
-     * DT_Example_Metrics_Menu Instance
+     * DT_Clever_Insights_Menu Instance
      *
-     * Ensures only one instance of DT_Example_Metrics_Menu is loaded or can be loaded.
+     * Ensures only one instance of DT_Clever_Insights_Menu is loaded or can be loaded.
      *
      * @since 0.1.0
      * @static
-     * @return DT_Example_Metrics_Menu instance
+     * @return DT_Clever_Insights_Menu instance
      */
     public static function instance() {
         if ( is_null( self::$_instance ) ) {
@@ -59,7 +59,7 @@ class DT_Example_Metrics_Menu {
      */
     public function register_menu() {
         add_menu_page( __( 'Extensions (DT)', 'disciple_tools' ), __( 'Extensions (DT)', 'disciple_tools' ), 'manage_dt', 'dt_extensions', [ $this, 'extensions_menu' ], 'dashicons-admin-generic', 59 );
-        add_submenu_page( 'dt_extensions', __( 'Example Metrics', 'dt_example_metrics' ), __( 'Example Metrics', 'dt_example_metrics' ), 'manage_dt', $this->token, [ $this, 'content' ] );
+        add_submenu_page( 'dt_extensions', __( 'Clever Insights', 'dt_clever_insights' ), __( 'Clever Insights', 'dt_clever_insights' ), 'manage_dt', $this->token, [ $this, 'content' ] );
     }
 
     /**
@@ -87,20 +87,20 @@ class DT_Example_Metrics_Menu {
 
         ?>
         <div class="wrap">
-            <h2><?php esc_attr_e( 'Example Metrics', 'dt_example_metrics' ) ?></h2>
+            <h2><?php esc_attr_e( 'Clever Insights', 'dt_clever_insights' ) ?></h2>
             <h2 class="nav-tab-wrapper">
-                <a href="<?php echo esc_attr( $link ) . 'general' ?>" class="nav-tab <?php ( $tab == 'general' || ! isset( $tab ) ) ? esc_attr_e( 'nav-tab-active', 'dt_example_metrics' ) : print ''; ?>"><?php esc_attr_e( 'General', 'dt_example_metrics' ) ?></a>
-                <a href="<?php echo esc_attr( $link ) . 'second' ?>" class="nav-tab <?php ( $tab == 'second' ) ? esc_attr_e( 'nav-tab-active', 'dt_example_metrics' ) : print ''; ?>"><?php esc_attr_e( 'Second', 'dt_example_metrics' ) ?></a>
+                <a href="<?php echo esc_attr( $link ) . 'general' ?>" class="nav-tab <?php ( $tab == 'general' || ! isset( $tab ) ) ? esc_attr_e( 'nav-tab-active', 'dt_clever_insights' ) : print ''; ?>"><?php esc_attr_e( 'General', 'dt_clever_insights' ) ?></a>
+                <a href="<?php echo esc_attr( $link ) . 'second' ?>" class="nav-tab <?php ( $tab == 'second' ) ? esc_attr_e( 'nav-tab-active', 'dt_clever_insights' ) : print ''; ?>"><?php esc_attr_e( 'Second', 'dt_clever_insights' ) ?></a>
             </h2>
 
             <?php
             switch ($tab) {
                 case "general":
-                    $object = new DT_Advanced_Metrics_Tab_General();
+                    $object = new DT_Clever_Insights_Tab_General();
                     $object->content();
                     break;
                 case "second":
-                    $object = new DT_Advanced_Metrics_Tab_Second();
+                    $object = new DT_Clever_Insights_Tab_Second();
                     $object->content();
                     break;
                 default:
@@ -115,9 +115,9 @@ class DT_Example_Metrics_Menu {
 }
 
 /**
- * Class DT_Advanced_Metrics_Tab_General
+ * Class DT_Clever_Insights_Tab_General
  */
-class DT_Advanced_Metrics_Tab_General
+class DT_Clever_Insights_Tab_General
 {
     public function content() {
         ?>
@@ -189,9 +189,9 @@ class DT_Advanced_Metrics_Tab_General
 }
 
 /**
- * Class DT_Advanced_Metrics_Tab_Second
+ * Class DT_Clever_Insights_Tab_Second
  */
-class DT_Advanced_Metrics_Tab_Second
+class DT_Clever_Insights_Tab_Second
 {
     public function content() {
         ?>

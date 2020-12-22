@@ -10,11 +10,11 @@ if ( !defined( 'ABSPATH' ) ) {
 
 class DT_Template_Metrics_Chart_Template extends DT_Metrics_Chart_Base
 {
-    public $base_slug = 'example_metrics'; // lowercase
-    public $base_title = "Example Metrics";
+    public $base_slug = 'clever_insights'; // lowercase
+    public $base_title = "Clever Insights";
 
-    public $title = 'Template';
-    public $slug = 'template'; // lowercase
+    public $title = 'Contacts';
+    public $slug = 'contacts'; // lowercase
     public $js_object_name = 'wp_js_object'; // This object will be loaded into the metrics.js file by the wp_localize_script.
     public $js_file_name = 'one-page-chart-template.js'; // should be full file name plus extension
     public $permissions = [ 'view_any_contacts', 'view_project_metrics' ];

@@ -1,6 +1,6 @@
 <?php
 
-class DT_Advanced_Metrics_Charts
+class DT_Clever_Insights_Charts
 {
     private static $_instance = null;
     public static function instance(){
@@ -18,4 +18,4 @@ class DT_Advanced_Metrics_Charts
 
     } // End __construct
 }
-DT_Advanced_Metrics_Charts::instance();
+DT_Clever_Insights_Charts::instance();
